@@ -1,0 +1,30 @@
+{% extends 'rankings/includes/basiclayout.html' %}
+
+{% block mainbody %}
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1>Welcome to my Site</h1>
+            <p> For further information don't hesitate to call me on my number: 07463983525 or send me an email at christian.mitrofan@gmail.com </p>
+        </div>
+    </div>
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif%}
+    <form action="{% url 'addmatch' %}" method="post">
+        {% csrf_token %}
+        <label for="first_player">Choose the first Player</label>
+        <select name="first_player" class="form-control">
+            {% for player in players %}
+                <option id="player{{ forloop.counter }}" value="{{ player.id }}">{{ player.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="second_player">Choose the second Player</label>
+        <select name="second_player" class="form-control">
+            {% for player in players %}
+                <option id="player{{ forloop.counter }}" value="{{ player.id }}">{{ player.name }}</option>
+            {% endfor %}
+        </select>
+        </br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
