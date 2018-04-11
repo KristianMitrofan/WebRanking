@@ -11,13 +11,11 @@ This Django project was developed using PyCharm with python 3.6.5 , other depend
 3. Chardet
 4. Idna
 5. Pytz
+6. urllib3
 
-To test the project you will need to have python 3 and preferably PyCharm (it has db.sqlite by default) installed and then:
-1. Clone the project
-2. Install any dependencies(File->Settings->Project:WebRanking->Project Interpreter)
-3. Run python manage.py migrate
-4. Run python manage.py createsuperuser
-5. Run python manage.py migrate rankings
-6. Run project and then open localhost to view the app
+The easiest way to test this project is by installing the latest edition of python 3 and PyCharm Professional:
+1. Clone the repository
+2. Open the project with Pycharm
+3. Run the project and go to localhost to view it
 
 
