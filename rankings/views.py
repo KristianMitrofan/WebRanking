@@ -64,7 +64,7 @@ def addmatch(request):
             second_player.performances += 1
             first_player.save()
             second_player.save()
-            return HttpResponseRedirect('')  # Redirect after POST
+            return render(request, 'rankings/homepage.html', {'players': all_players})
     else:
         form = NameForm()  # An unbound form
 
