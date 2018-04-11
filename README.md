@@ -1,5 +1,11 @@
 # WebRanking
-The Elo rating system is a way of calculating the level of skill of a player in games such as chess. The Elo rating of a player takes the form of a number that is recalculated every time that player plays a match against another Elo ranked player. After a match the winning player's takes rating points from the losing player, with the amount of points taken determined by the difference between the two players' rating before the match. (see https://en.wikipedia.org/wiki/Elo_rating_system)
+The Elo rating system is a way of calculating the level of skill of a player in games such as chess. 
+The Elo rating of a player takes the form of a number that is recalculated every time that player plays a 
+match against another Elo ranked player. After a match the winning player's takes rating points from the 
+losing player, with the amount of points taken determined by the difference between the two players' rating 
+before the match. (see https://en.wikipedia.org/wiki/Elo_rating_system)
+
+I migrated the database with the current top players by scraping https://www.prochessleague.com/players.html
 
 The interface supports the following functionality:
 1. Recalculate and store the Elo rating of players by entering the results of a single match.
@@ -16,6 +22,7 @@ This Django project was developed using PyCharm with python 3.6.5 , other depend
 The easiest way to test this project is by installing the latest edition of python 3 and PyCharm Professional:
 1. Clone the repository
 2. Open the project with Pycharm
+3. Go to File->Settings->Project:WebRankings and add the existing the interpreter
 3. Run the project and go to localhost to view it
 
 
