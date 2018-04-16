@@ -2,6 +2,7 @@ from .models import Player,Match
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .forms import NameForm
 from .source import ranking
 
@@ -46,15 +47,22 @@ def addmatch(request):
         if form.is_valid():  # All validation rules pass
             first_player = Player.objects.get(pk=int(form['first_player'].value()))
             second_player = Player.objects.get(pk=int(form['second_player'].value()))
-            performances = ((first_player.name,int(first_player.performances)),(second_player.name,int(second_player.performances)))
+            if (first_player==second_player):
+                messages.error(request, 'Choose different players!')
+                return render(request, 'rankings/homepage.html', {'players': all_players})
+            first_per = float(request.POST['first_per'])
+            second_per = float(request.POST['second_per'])
+            performances = ((first_player.name,first_per),(second_player.name,second_per))
             rankings = {first_player.name:first_player.ranking,second_player.name:second_player.ranking}
             updated_rankings = ranking.apply_multiplayer_updates(performances,rankings)
             if (updated_rankings[first_player.name] > first_player.ranking): #If the first player has higher ranking after the match he is the winner
                 match = Match(winner=first_player.name)
+                messages.success(request, 'Rankings updated!')
             elif (updated_rankings[first_player.name] == first_player.ranking): #Just in case for future development
                 match = Match(winner="Draw")
             else:
                 match = Match(winner=second_player.name)
+                messages.success(request, 'Rankings updated')
             match.save()
             match.players.add(first_player,second_player)
             #Updating the rankings of the player in the database with the updated rankings
