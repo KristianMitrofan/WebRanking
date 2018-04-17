@@ -11,18 +11,31 @@ The interface supports the following functionality:
 1. Recalculate and store the Elo rating of players by entering the results of a single match.
 2. Retrieve a summary of current players and their ranking in the league based on their Elo rating.
 
-This Django project was developed using PyCharm with python 3.6.5 , other dependencies include:
-1. Requests
-2. Certifi
-3. Chardet
-4. Idna
-5. Pytz
-6. urllib3
-
-The easiest way to test this project is by installing the latest edition of python 3 and PyCharm Professional:
-1. Clone the repository
-2. Open the project with Pycharm
-3. Go to File->Settings->Project:WebRankings and add the existing the interpreter
-3. Run the project and go to localhost to view it
+Instructions to run the project:
+1. Clone the project from github (git clone https://github.com/ChristianMitrofan/WebRanking.git)
+2. Create a virtual environment (virtualenv env --no-site-packages) in the project's folder
+3. Start the virtual environment (Linux:source env/bin/activate Windows:venv\Scripts\activate.bat)
+4. Install requirements (pip install -r requirements.txt)
+5. Create a file named "secrets.sh" (Linux:touch secrets.sh Windows:type nul>secrets.sh)
+6. Obtain a secret from MiniWebTool key and add export SECRET_KEY='<secret_key>' to secrets.sh 
+7. Create a postgres db and add the credentials to settings.py
+   
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'db_name',
+           'USER': 'name',
+           'PASSWORD': '',
+           'HOST': 'localhost',
+           'PORT': '',
+       }
+   }
+   
+8. Migrate the database (python manage.py migrate)
+9. And finally to start the development server
+               
+               python manage.py runserver
+               
+    and open localhost:8000 on your browser to view the app.
 
 
